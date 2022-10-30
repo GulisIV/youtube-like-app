@@ -1,21 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Search from "../Icons/Search";
+import { useDispatch } from "react-redux";
+import { videosSearchInit } from "../../../redux/actions/search/search";
 
 const YoutubeSearchbar = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(videosSearchInit(e.target.search?.value));
+  };
+
   return (
-    <SearchbarWrapper>
-      <StyledInput type="search" placeholder="Search" aria-label="Search" />
+    <SearchbarForm onSubmit={handleSubmit}>
+      <StyledInput
+        type="search"
+        name="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
       <SearchButton type="submit">
         <Search />
       </SearchButton>
-    </SearchbarWrapper>
+    </SearchbarForm>
   );
 };
 
 export default YoutubeSearchbar;
 
-const SearchbarWrapper = styled.form`
+const SearchbarForm = styled.form`
   display: flex;
   flex-grow: 1;
   margin: 0 2rem 0 4rem;

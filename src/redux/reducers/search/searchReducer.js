@@ -4,7 +4,7 @@ import { updateObject } from '../../../utils/utils';
 const initialState = {
     isLoading: false,
     isError: false,
-    data: [],
+    items: [],
     errorMessage: '',
 };
 
@@ -33,7 +33,7 @@ const finishVideosSearch = (state, action) => {
     const updater = {
         isLoading: false,
         isError: false,
-        data: action.payload.data,
+        items: action.payload.items,
         errorMessage: '',
     }
 

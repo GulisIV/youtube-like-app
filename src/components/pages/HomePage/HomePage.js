@@ -1,21 +1,27 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import PageHeader from "../../common/PageHeader/PageHeader";
 import VideoTile from "../../common/VideoTile/VideoTile";
 import YoutubePlayer from "../../common/YoutubePlayer/YoutubePlayer";
+import { searchedVideosSelector } from "../../../redux/selectors/search/searchSelectors";
 
 const HomePage = () => {
+  const videos = useSelector(searchedVideosSelector);
+  const searchedVideos = videos.map((video) => {
+    return(
+      <VideoTile videoId={video.id.videoId} snippet={video.snippet} />
+    );
+  });
   return (
     <>
       <PageHeader />
       <VideosContainer>
         <VideosSection>
-          <VideoTile />
-          <VideoTile />
-          <VideoTile />
+          {searchedVideos}
         </VideosSection>
       </VideosContainer>
-      <YoutubePlayer videoId={'AVEXElJ2iic'} />
+      <YoutubePlayer videoId={"AVEXElJ2iic"} />
     </>
   );
 };

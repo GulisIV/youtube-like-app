@@ -2,23 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import ChannelImage from "../ChannelImage/ChannelImage";
 
-const VideoTile = () => {
+const VideoTile = ({ videoId, snippet }) => {
+  console.log("snippet", snippet);
+  const videoTitle = snippet.title || "";
+  const channelTitle = snippet.channelTitle || "";
+  const videoThumbnail = snippet.thumbnails?.high.url;
   return (
-    <Tile>
-      <a href="#" class="thumbnail" data-duration="12:24">
-        <img
-          class="thumbnail-image"
-          src="https://picsum.photos/200"
-        />
+    <Tile key={videoId}>
+      <a href="#" data-duration="12:24">
+        <VideoThumbnail src={videoThumbnail} alt="Video preview" />
       </a>
       <VideoInfo>
         <ChannelImage />
         <Details>
-          <Title href="#">Video Title</Title>
-          <ChannelName href="#">Channel Name</ChannelName>
+          <Title href="#">{videoTitle}</Title>
+          <ChannelTitle href="#">{channelTitle}</ChannelTitle>
+          {/* TO DO: add additional API calls to get this data
           <Metadata>
             <span>12K views</span>•<span>1 week ago</span>
-          </Metadata>
+          </Metadata> 
+          */}
         </Details>
       </VideoInfo>
     </Tile>
@@ -30,6 +33,14 @@ export default VideoTile;
 const Tile = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const VideoThumbnail = styled.img`
+  width: 100%;
+  height: 100%;
+  min-width: 250px;
+  min-height: 150px;
+  background-color: #aaa;
 `;
 
 const VideoInfo = styled.div`
@@ -51,7 +62,7 @@ const Title = styled.a`
   color: black;
 `;
 
-const ChannelName = styled.a`
+const ChannelTitle = styled.a`
   margin-bottom: 0.1rem;
   text-decoration: none;
   transition: color 150ms;
