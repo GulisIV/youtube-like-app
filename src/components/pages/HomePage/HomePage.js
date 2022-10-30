@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import PageHeader from "../../components/PageHeader/PageHeader";
-import VideoTile from "../../components/VideoTile/VideoTile";
+import PageHeader from "../../common/PageHeader/PageHeader";
+import VideoTile from "../../common/VideoTile/VideoTile";
+import YoutubePlayer from "../../common/YoutubePlayer/YoutubePlayer";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
           <VideoTile />
         </VideosSection>
       </VideosContainer>
+      <YoutubePlayer videoId={'AVEXElJ2iic'} />
     </>
   );
 };
