@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import YoutubeSearchbar from "../YoutubeSearchbar/YoutubeSearchbar";
-import UserAvatar from "../UserAvatar/UserAvatar";
+import ChannelImage from "../ChannelImage/ChannelImage";
 import Apps from "../Icons/Apps";
 import Bell from "../Icons/Bell";
 import Videos from "../Icons/Videos";
@@ -16,7 +16,7 @@ const PageHeader = () => {
         <Videos />
         <Apps />
         <Bell />
-        <UserAvatar />
+        <ChannelImage />
       </MenuIcons>
     </HeaderWrapper>
   );

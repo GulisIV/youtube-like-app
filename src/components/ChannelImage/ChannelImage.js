@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const UserAvatar = () => {
+const ChannelImage = () => {
   return (
     <StyledImg
       src="https://picsum.photos/200"
@@ -10,7 +10,7 @@ const UserAvatar = () => {
   );
 };
 
-export default UserAvatar;
+export default ChannelImage;
 
 const StyledImg = styled.img`
   border-radius: 50%;
