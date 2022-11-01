@@ -1,25 +1,18 @@
-import './App.css';
-import HomePage from './components/pages/HomePage/HomePage';
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import * as routes from "./utils/routes";
+import HomePage from "./components/pages/HomePage/HomePage";
+import SearchResultsPage from "./components/pages/SearchPage/SearchResultsPage";
+import VideoViewPage from "./components/pages/VideoViewPage/VideoViewPage";
+
 
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>    
-    // </div>
-    <HomePage />
+    <Routes>
+      <Route path={routes.HOME} element={<HomePage />} />
+      <Route path={routes.SEARCH} element={<SearchResultsPage />} />
+      <Route path={routes.VIDEO} element={<VideoViewPage />} />
+    </Routes>
   );
 }
 
