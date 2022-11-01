@@ -4,17 +4,17 @@ import { updateObject } from '../../../utils/utils';
 const initialState = {
     isLoading: false,
     isError: false,
-    data: [],
+    items: [],
     errorMessage: '',
 };
 
 /**
- * Handler for 'LOAD_RECOMMENDED_VIDEOS_START' action
+ * Handler for 'LOAD_VIDEOS_RECOMMENDATIONS_BY_REGION_START' action
  * 
  * @param {Object} state Redux state
  * @returns {Object} Redux state
  */
-const startRecommendedVideosLoad = state => {
+const startVideosRecommendationsByRegionLoad = state => {
     const updater = {
         isLoading: true,
     }
@@ -23,17 +23,17 @@ const startRecommendedVideosLoad = state => {
 }
 
 /**
- * Handler for 'LOAD_RECOMMENDED_VIDEOS_FINISH' action
+ * Handler for 'LOAD_VIDEOS_RECOMMENDATIONS_BY_REGION_FINISH' action
  * 
  * @param {Object} state Redux state
  * @param {Object} state Redux action
  * @returns {Object} Redux state
  */
-const finishRecommendedVideosLoad = (state, action) => {
+const finishVideosRecommendationsByRegionLoad = (state, action) => {
     const updater = {
         isLoading: false,
         isError: false,
-        data: action.payload.data,
+        items: action.payload.items,
         errorMessage: '',
     }
 
@@ -41,13 +41,13 @@ const finishRecommendedVideosLoad = (state, action) => {
 }
 
 /**
- * Handler for 'LOAD_RECOMMENDED_VIDEOS_ERROR' action
+ * Handler for 'LOAD_VIDEOS_RECOMMENDATIONS_BY_REGION_ERROR' action
  * 
  * @param {Object} state Redux state
  * @param {Object} state Redux action
  * @returns {Object} Redux state
  */
- const errorRecommendedVideosLoad = (state, action) => {
+ const errorVideosRecommendationsByRegionLoad = (state, action) => {
     const updater = {
         isLoading: false,
         isError: true,
@@ -57,16 +57,16 @@ const finishRecommendedVideosLoad = (state, action) => {
     return updateObject(state, updater);
 }
 
-export const videoRecommendationsReducer = (state = initialState, action) => {
+export const videoRecommendationsByRegionReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.LOAD_RECOMMENDED_VIDEOS_START: {
-            return startRecommendedVideosLoad(state, action);
+        case actionTypes.LOAD_VIDEOS_RECOMMENDATIONS_BY_REGION_START: {
+            return startVideosRecommendationsByRegionLoad(state, action);
         }
-        case actionTypes.LOAD_RECOMMENDED_VIDEOS_FINISH: {
-            return finishRecommendedVideosLoad(state, action);
+        case actionTypes.LOAD_VIDEOS_RECOMMENDATIONS_BY_REGION_FINISH: {
+            return finishVideosRecommendationsByRegionLoad(state, action);
         }
-        case actionTypes.LOAD_RECOMMENDED_VIDEOS_ERROR: {
-            return errorRecommendedVideosLoad(state, action);
+        case actionTypes.LOAD_VIDEOS_RECOMMENDATIONS_BY_REGION_ERROR: {
+            return errorVideosRecommendationsByRegionLoad(state, action);
         }
         default:
             return state;

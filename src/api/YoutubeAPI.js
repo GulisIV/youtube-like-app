@@ -1,14 +1,14 @@
 const API_KEY = "AIzaSyAHR_M-m0C4RRxmLogLZY6aqkhLJ9O9E5g";
 const part = "snippet";
 const maxResults = 20;
-const locationRadius = 500;
 const type = "video";
 
-const url = "https://www.googleapis.com/youtube/v3/search?";
+const searchURL = "https://www.googleapis.com/youtube/v3/search?";
+const videosURL = "https://youtube.googleapis.com/youtube/v3/videos?";
 
 export const getVideos = async ({ payload }) => {
   const result = await fetch(
-    `${url}part=${part}&q=${payload}&maxResults=${maxResults}&type=${type}&key=${API_KEY}`
+    `${searchURL}part=${part}&q=${payload}&maxResults=${maxResults}&type=${type}&key=${API_KEY}`
   );
   const data = await result.json();
   return data;
@@ -16,7 +16,7 @@ export const getVideos = async ({ payload }) => {
 
 export const getRelatedVideos = async ({ payload }) => {
   const result = await fetch(
-    `${url}part=${part}&relatedToVideoId=${payload}&maxResults=${maxResults}&type=${type}&key=${API_KEY}`
+    `${searchURL}part=${part}&relatedToVideoId=${payload}&maxResults=${maxResults}&type=${type}&key=${API_KEY}`
   );
   const data = await result.json();
   console.log(data);
@@ -32,9 +32,9 @@ export const getRelatedVideos = async ({ payload }) => {
 //   console.log(data);
 // };
 
-export const getLocationRecommendedVideos = async ({ payload }) => {
+export const getVideosRecommendationsByRegion = async ({ payload }) => {
   const result = await fetch(
-    `${url}part=${part}&location=${payload}&locationRadius=${locationRadius}km&maxResults=${maxResults}&type=${type}&key=${API_KEY}`
+    `${videosURL}part=${part}%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=${payload}&maxResults=${maxResults}&key=${API_KEY}`
   );
   const data = await result.json();
   console.log(data);

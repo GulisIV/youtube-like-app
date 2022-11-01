@@ -3,8 +3,10 @@ import * as actionTypes from '../../actions/actionTypes';
 import * as YoutubeAPI from '../../../api/YoutubeAPI';
 import * as actions from '../../actions/search/search';
 
+/**
+ * Worker for "VIDEOS_SEARCH_START" action
+ */
 function* getSearchedVideos(payload) {
-    console.log('payload', payload);
     try {
         const response = yield call(YoutubeAPI.getVideos, payload);
         yield put(actions.videosSearchFinish(response));
@@ -13,8 +15,11 @@ function* getSearchedVideos(payload) {
     }
 }
 
+/**
+ * Watcher for videos searching
+ */
 export function* watchVideosSearch() {
     yield all([
-        takeLatest(actionTypes.VIDEOS_SEARCH_INIT, getSearchedVideos),
+        takeLatest(actionTypes.VIDEOS_SEARCH_START, getSearchedVideos),
     ]);
 }

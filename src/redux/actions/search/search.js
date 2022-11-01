@@ -2,7 +2,7 @@ import * as actionTypes from "../actionTypes";
 
 export const videosSearchInit = (payload) => {
   return {
-    type: actionTypes.VIDEOS_SEARCH_INIT,
+    type: actionTypes.VIDEOS_SEARCH_START,
     payload,
   };
 };
