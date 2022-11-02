@@ -1,16 +1,20 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import styled from "styled-components";
-import Search from "../Icons/Search";
+import React from "react";
+import { generatePath, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import * as routes from "../../../utils/routes";
+import Search from "../Icons/Search";
 import { videosSearchInit } from "../../../redux/actions/search/search";
 
 const YoutubeSearchbar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(videosSearchInit(e.target.search?.value));
+    const searchedValue = e.target.search?.value;
+    dispatch(videosSearchInit(searchedValue));
+    navigate(generatePath(routes.SEARCH, { query: searchedValue }));
   };
 
   return (

@@ -2,16 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 const YoutubePlayer = ({ videoId }) => {
+  //TO DO: Resize Iframe height
   return (
     <VideoContainer>
       <iframe
-        width="853"
-        height="480"
+        id="Player"
+        width="100%"
+        height="480px"
         src={`https://www.youtube.com/embed/${videoId}`}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        title="Embedded youtube"
+        title="Embedded youtube player"
       />
     </VideoContainer>
   );
