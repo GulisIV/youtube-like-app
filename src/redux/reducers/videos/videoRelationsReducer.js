@@ -4,17 +4,17 @@ import { updateObject } from '../../../utils/utils';
 const initialState = {
     isLoading: false,
     isError: false,
-    data: [],
+    items: [],
     errorMessage: '',
 };
 
 /**
- * Handler for 'LOAD_RECOMMENDED_VIDEOS_START' action
+ * Handler for 'LOAD_RELATED_VIDEOS_START' action
  * 
  * @param {Object} state Redux state
  * @returns {Object} Redux state
  */
-const startVideosSuggestionsLoad = state => {
+const loadRelatedVideosStart = state => {
     const updater = {
         isLoading: true,
     }
@@ -23,17 +23,17 @@ const startVideosSuggestionsLoad = state => {
 }
 
 /**
- * Handler for 'LOAD_RECOMMENDED_VIDEOS_FINISH' action
+ * Handler for 'LOAD_RELATED_VIDEOS_FINISH' action
  * 
  * @param {Object} state Redux state
  * @param {Object} state Redux action
  * @returns {Object} Redux state
  */
-const finishVideosSuggestionsLoad = (state, action) => {
+const loadRelatedVideosFinish = (state, action) => {
     const updater = {
         isLoading: false,
         isError: false,
-        data: action.payload.data,
+        items: action.payload.items,
         errorMessage: '',
     }
 
@@ -41,13 +41,13 @@ const finishVideosSuggestionsLoad = (state, action) => {
 }
 
 /**
- * Handler for 'LOAD_RECOMMENDED_VIDEOS_ERROR' action
+ * Handler for 'LOAD_RELATED_VIDEOS_ERROR' action
  * 
  * @param {Object} state Redux state
  * @param {Object} state Redux action
  * @returns {Object} Redux state
  */
- const errorVideosSuggestionsLoad = (state, action) => {
+ const loadRelatedVideosError = (state, action) => {
     const updater = {
         isLoading: false,
         isError: true,
@@ -57,16 +57,16 @@ const finishVideosSuggestionsLoad = (state, action) => {
     return updateObject(state, updater);
 }
 
-export const videoSuggestionsReducer = (state = initialState, action) => {
+export const videoRelationsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.LOAD_VIDEO_SUGGESTIONS_START: {
-            return startVideosSuggestionsLoad(state, action);
+        case actionTypes.LOAD_RELATED_VIDEOS_START: {
+            return loadRelatedVideosStart(state, action);
         }
-        case actionTypes.LOAD_VIDEO_SUGGESTIONS_FINISH: {
-            return finishVideosSuggestionsLoad(state, action);
+        case actionTypes.LOAD_RELATED_VIDEOS_FINISH: {
+            return loadRelatedVideosFinish(state, action);
         }
-        case actionTypes.LOAD_VIDEO_SUGGESTIONS_ERROR: {
-            return errorVideosSuggestionsLoad(state, action);
+        case actionTypes.LOAD_RELATED_VIDEOS_ERROR: {
+            return loadRelatedVideosError(state, action);
         }
         default:
             return state;

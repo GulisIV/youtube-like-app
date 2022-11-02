@@ -3,13 +3,13 @@ import createSagaMiddleware from "@redux-saga/core";
 import thunk from "redux-thunk";
 
 import { videoRecommendationsByRegionReducer } from "../reducers/videos/videoRecommendationsByRegionReducer";
-import { videoSuggestionsReducer } from "../reducers/videos/videoSuggestionsReducer";
+import { videoRelationsReducer } from "../reducers/videos/videoRelationsReducer";
 import { searchReducer } from "../reducers/search/searchReducer";
 
 export const sagaMiddleware = createSagaMiddleware();
 export const rootReducer = combineReducers({
     videoRecommendationsByRegion: videoRecommendationsByRegionReducer,
-    videoSuggestions: videoSuggestionsReducer,
+    videoRelations: videoRelationsReducer,
     search: searchReducer,
 });
 export const store = createStore(rootReducer, compose(applyMiddleware(thunk, sagaMiddleware)));
