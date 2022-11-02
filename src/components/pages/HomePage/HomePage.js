@@ -1,45 +1,36 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import styled from "styled-components";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import PageHeader from "../../common/PageHeader/PageHeader";
 import VideoTile from "../../common/VideoTile/VideoTile";
-import YoutubePlayer from "../../common/YoutubePlayer/YoutubePlayer";
-import { searchedVideosSelector } from "../../../redux/selectors/search/searchSelectors";
+import VideosPanel from "../../common/VideosPanel/VideosPanel";
+import { videosRecommendationsByRegionSelector } from "../../../redux/selectors/videos/recommendationsByRegionSelector";
+import { loadRecommendedVideosByRegionStart } from "../../../redux/actions/videos/videoRecommendationsByRegion";
+
+// const getPositionSuccess = pos => {
+//   const crd = pos.coords;
+// }
+// navigator.geolocation.getCurrentPosition(success);
+// Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+const userRegionCode = "PL";
 
 const HomePage = () => {
-  const videos = useSelector(searchedVideosSelector);
-  const searchedVideos = videos.map((video) => {
-    return(
-      <VideoTile videoId={video.id.videoId} snippet={video.snippet} />
-    );
-  });
+  const dispatch = useDispatch();
+
+  const videoRecommendations = useSelector(
+    videosRecommendationsByRegionSelector
+  );
+
+  useEffect(() => {
+    dispatch(loadRecommendedVideosByRegionStart(userRegionCode));
+  }, []);
+
   return (
     <>
       <PageHeader />
-      <VideosContainer>
-        <VideosSection>
-          {searchedVideos}
-        </VideosSection>
-      </VideosContainer>
-      <YoutubePlayer videoId={"AVEXElJ2iic"} />
+      <VideosPanel videos={videoRecommendations} />
     </>
   );
 };
 
 export default HomePage;
-
-const VideosContainer = styled.div`
-  background-color: #f9f9f9;
-`;
-
-const VideosSection = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 3rem 1rem;
-  padding: 3rem 0;
-  margin: 0 1.5rem;
-  border-top: 4px solid #ccc;
-  &:first-child {
-    border-top: none;
-  }
-`;
