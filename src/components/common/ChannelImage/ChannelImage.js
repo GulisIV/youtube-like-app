@@ -2,12 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const ChannelImage = () => {
-  return (
-    <StyledImg
-      src="https://picsum.photos/200"
-      alt="Your Channel"
-    />
-  );
+  return <StyledImg src="https://picsum.photos/200" alt="Your Channel" />;
 };
 
 export default ChannelImage;

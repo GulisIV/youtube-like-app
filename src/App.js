@@ -5,7 +5,6 @@ import HomePage from "./components/pages/HomePage/HomePage";
 import SearchResultsPage from "./components/pages/SearchPage/SearchResultsPage";
 import VideoViewPage from "./components/pages/VideoViewPage/VideoViewPage";
 
-
 function App() {
   return (
     <Routes>

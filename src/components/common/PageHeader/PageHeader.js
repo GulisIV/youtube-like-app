@@ -1,5 +1,9 @@
 import React from "react";
+import { generatePath, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import * as routes from "../../../utils/routes";
+import { videosSearchInit } from "../../../redux/actions/search/search";
 import YoutubeSearchbar from "../YoutubeSearchbar/YoutubeSearchbar";
 import ChannelImage from "../ChannelImage/ChannelImage";
 import Apps from "../Icons/Apps";
@@ -8,10 +12,17 @@ import Videos from "../Icons/Videos";
 import Logo from "../Icons/Logo.png";
 
 const PageHeader = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSearchAction = (searchedValue) => {
+    dispatch(videosSearchInit(searchedValue));
+    navigate(generatePath(routes.SEARCH, { query: searchedValue }));
+  };
   return (
     <HeaderWrapper>
       <StyledLogo src={Logo} alt="YouTube Logo" />
-      <YoutubeSearchbar />
+      <YoutubeSearchbar onSubmit={handleSearchAction} />
       <MenuIcons>
         <Videos />
         <Apps />

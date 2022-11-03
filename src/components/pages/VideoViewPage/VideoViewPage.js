@@ -19,7 +19,7 @@ const VideoViewPage = () => {
 
   useEffect(() => {
     dispatch(loadRelatedVideosStart(videoId));
-  }, [videoId]);
+  }, [dispatch, videoId]);
 
   return (
     <>
@@ -32,7 +32,9 @@ const VideoViewPage = () => {
             channelTitle={state.channelTitle}
           />
         </VideoBlock>
-        <StyledVideosPanel isColumnOrientation videos={relatedVideos} />
+        <VideosPanelContainer>
+          <VideosPanel isColumnOrientation videos={relatedVideos} />
+        </VideosPanelContainer>
       </ContentWrapper>
     </>
   );
@@ -49,6 +51,6 @@ const VideoBlock = styled.div`
   width: 80%;
 `;
 
-const StyledVideosPanel = styled(VideosPanel)`
+const VideosPanelContainer = styled.div`
   width: 15%;
 `;

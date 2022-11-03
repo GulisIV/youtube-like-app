@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PageHeader from "../../common/PageHeader/PageHeader";
-import VideoTile from "../../common/VideoTile/VideoTile";
 import VideosPanel from "../../common/VideosPanel/VideosPanel";
 import { videosRecommendationsByRegionSelector } from "../../../redux/selectors/videos/recommendationsByRegionSelector";
 import { loadRecommendedVideosByRegionStart } from "../../../redux/actions/videos/videoRecommendationsByRegion";
@@ -23,7 +22,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(loadRecommendedVideosByRegionStart(userRegionCode));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

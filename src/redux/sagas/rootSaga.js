@@ -7,7 +7,7 @@ const sagas = Object.values(allWatchers).map((saga) =>
       try {
         yield call(saga);
         break;
-      } catch(error) {
+      } catch (error) {
         console.error("Saga error", error);
       }
     }

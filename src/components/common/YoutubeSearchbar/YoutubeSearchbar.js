@@ -1,29 +1,26 @@
-import React from "react";
-import { generatePath, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import styled from "styled-components";
-import * as routes from "../../../utils/routes";
 import Search from "../Icons/Search";
-import { videosSearchInit } from "../../../redux/actions/search/search";
 
-const YoutubeSearchbar = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+const YoutubeSearchbar = ({ onSubmit }) => {
+  const [searchValue, setSearchValue] = useState("");
 
   const handleSubmit = (e) => {
+    const value = e.target.search?.value;
     e.preventDefault();
-    const searchedValue = e.target.search?.value;
-    dispatch(videosSearchInit(searchedValue));
-    navigate(generatePath(routes.SEARCH, { query: searchedValue }));
+    onSubmit(value);
   };
 
   return (
-    <SearchbarForm onSubmit={handleSubmit}>
+    <SearchbarForm role="form" onSubmit={handleSubmit}>
       <StyledInput
         type="search"
         name="search"
         placeholder="Search"
         aria-label="Search"
+        role="input"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
       />
       <SearchButton type="submit">
         <Search />

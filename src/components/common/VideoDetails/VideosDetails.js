@@ -4,18 +4,18 @@ import ChannelImage from "../ChannelImage/ChannelImage";
 
 const VideoDetails = ({ videoTitle, channelTitle }) => {
   return (
-      <VideoInfo>
-        <ChannelImage />
-        <Details>
-          <Title href="#">{videoTitle}</Title>
-          <ChannelTitle href="#">{channelTitle}</ChannelTitle>
-          {/* TO DO: add additional API calls to get this data
+    <VideoInfo>
+      <ChannelImage />
+      <Details>
+        <Title href="#">{videoTitle}</Title>
+        <ChannelTitle href="#">{channelTitle}</ChannelTitle>
+        {/* TO DO: add additional API calls to get this data
           <Metadata>
             <span>12K views</span>•<span>1 week ago</span>
           </Metadata> 
           */}
-        </Details>
-      </VideoInfo>
+      </Details>
+    </VideoInfo>
   );
 };
 
@@ -30,12 +30,13 @@ const VideoInfo = styled.div`
 const Details = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 0.5rem;
 `;
 
 const Title = styled.a`
   font-size: 1.1rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   text-decoration: none;
   color: black;
 `;
@@ -50,6 +51,6 @@ const ChannelTitle = styled.a`
   }
 `;
 
-const Metadata = styled.div`
-  color: #555;
-`;
+// const Metadata = styled.div`
+//   color: #555;
+// `;

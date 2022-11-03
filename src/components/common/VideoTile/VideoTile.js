@@ -12,16 +12,18 @@ const VideoTile = ({ videoId, snippet }) => {
   const videoDetails = {
     videoTitle: videoTitle,
     channelTitle: channelTitle,
-  }
+  };
 
   const navigate = useNavigate();
 
   const handleThumbnailClick = () => {
-    navigate(generatePath(routes.VIDEO, { videoId: videoId }), {state: videoDetails});
+    navigate(generatePath(routes.VIDEO, { videoId: videoId }), {
+      state: videoDetails,
+    });
   };
 
   return (
-    <Tile key={videoId}>
+    <Tile id={videoId} key={videoId}>
       <VideoThumbnail onClick={handleThumbnailClick} data-duration="12:24">
         <VideoThumbnailImage src={videoThumbnail} alt="Video preview" />
       </VideoThumbnail>

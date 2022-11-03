@@ -8,8 +8,11 @@ import { searchReducer } from "../reducers/search/searchReducer";
 
 export const sagaMiddleware = createSagaMiddleware();
 export const rootReducer = combineReducers({
-    videoRecommendationsByRegion: videoRecommendationsByRegionReducer,
-    videoRelations: videoRelationsReducer,
-    search: searchReducer,
+  videoRecommendationsByRegion: videoRecommendationsByRegionReducer,
+  videoRelations: videoRelationsReducer,
+  search: searchReducer,
 });
-export const store = createStore(rootReducer, compose(applyMiddleware(thunk, sagaMiddleware)));
+export const store = createStore(
+  rootReducer,
+  compose(applyMiddleware(thunk, sagaMiddleware))
+);

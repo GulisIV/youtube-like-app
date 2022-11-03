@@ -14,13 +14,11 @@ export const getVideos = async ({ payload }) => {
   return data;
 };
 
-
 export const getRelatedVideos = async ({ payload }) => {
   const result = await fetch(
     `${searchURL}part=${part}&relatedToVideoId=${payload}&maxResults=${maxResults}&type=${type}&key=${API_KEY}`
   );
   const data = await result.json();
-  console.log(data);
   return data;
 };
 
@@ -30,7 +28,6 @@ export const getRelatedVideos = async ({ payload }) => {
 //     `${url}part=${part}&forMine=true&q=${payload}&maxResults=${maxResults}&type=${type}&key=${API_KEY}`
 //   );
 //   const data = await result.json();
-//   console.log(data);
 // };
 
 export const getVideosRecommendationsByRegion = async ({ payload }) => {
@@ -38,21 +35,5 @@ export const getVideosRecommendationsByRegion = async ({ payload }) => {
     `${videosURL}part=${part}%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=${payload}&maxResults=${maxResults}&key=${API_KEY}`
   );
   const data = await result.json();
-  console.log(data);
   return data;
 };
-
-// curl \
-//   'https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=[YOUR_API_KEY]' \
-//   --header 'Authorization: Bearer [YOUR_ACCESS_TOKEN]' \
-//   --header 'Accept: application/json' \
-//   --compressed
-
-//   export const getExtendedVideoInformation = async ({ payload }) => {
-//     const result = await fetch(
-//       `${searchURL}part=${part}&relatedToVideoId=${payload}&maxResults=${maxResults}&type=${type}&key=${API_KEY}`
-//     );
-//     const data = await result.json();
-//     console.log(data);
-//     return data;
-//   };
